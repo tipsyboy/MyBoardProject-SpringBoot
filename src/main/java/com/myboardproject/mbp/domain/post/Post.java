@@ -1,9 +1,12 @@
 package com.myboardproject.mbp.domain.post;
 
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @Entity
 public class Post {
@@ -12,18 +15,16 @@ public class Post {
     private Long id;
 
     @Column(length = 300)
-    private String subject; // 글 제목
+    private String title; // 글 제목
 
     @Column(columnDefinition = "TEXT")
     private String content; // 내용
 
     private String author; // 글쓴이
 
-    public Post(Long id, String subject, String content, String author) {
-        this.id = id;
-        this.subject = subject;
+    public Post(String title, String content, String author) {
+        this.title = title;
         this.content = content;
         this.author = author;
     }
-
 }
