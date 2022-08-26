@@ -19,4 +19,8 @@ public class Reply {
 
     private String author;
 
+    public Reply(String content, String author) {
+        this.content = content;
+        this.author = author;
+    }
 }

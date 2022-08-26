@@ -1,4 +1,4 @@
-package com.myboardproject.mbp.domain.user;
+package com.myboardproject.mbp.domain.member;
 
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -12,10 +12,14 @@ import javax.persistence.Id;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @Entity
-public class User {
+public class Member {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String username;
+
+    public Member(String username) {
+        this.username = username;
+    }
 }
