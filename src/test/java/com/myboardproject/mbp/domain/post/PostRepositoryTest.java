@@ -13,7 +13,8 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 class PostRepositoryTest {
 
-    @Autowired private PostRepository postRepository;
+    @Autowired
+    private PostRepository postRepository;
 
     @Test
     public void 글_저장_불러오기() {
