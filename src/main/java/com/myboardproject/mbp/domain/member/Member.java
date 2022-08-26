@@ -20,12 +20,6 @@ public class Member {
 
     private String username;
 
-    @OneToMany(mappedBy = "author")
-    private List<Post> postList = new ArrayList<>();
-
-    @OneToMany(mappedBy = "author")
-    private List<Reply> replyList = new ArrayList<>();
-
     public Member(String username) {
         this.username = username;
     }

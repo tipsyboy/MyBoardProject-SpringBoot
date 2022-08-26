@@ -25,13 +25,6 @@ public class Post extends BaseTimeEntity {
     @Column(columnDefinition = "TEXT")
     private String content; // 내용
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "member_id")
-    private String author; // 글쓴이
-
-    @OneToMany(mappedBy = "post")
-    private List<Reply> replyList = new ArrayList<>(); // 댓글 리스트
-
     public Post(String title, String content, String author) {
         this.title = title;
         this.content = content;
