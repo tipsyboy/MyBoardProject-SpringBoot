@@ -23,8 +23,7 @@ class PostRepositoryTest {
         // given
         String title = "테스트 제목";
         String content = "테스트 본문";
-        String author = "김치파워맨";
-        Post post = new Post(title, content, author);
+        Post post = new Post(title, content);
         postRepository.save(post);
 
         // when
@@ -34,7 +33,6 @@ class PostRepositoryTest {
         Post findPost = posts.get(0);
         assertThat(findPost.getTitle()).isEqualTo(title);
         assertThat(findPost.getContent()).isEqualTo(content);
-        assertThat(findPost.getAuthor()).isEqualTo(author);
     }
 
 
@@ -42,7 +40,7 @@ class PostRepositoryTest {
     public void BaseTimeEntity_확인() {
 
         // given
-        Post post = new Post("title", "content", "파워김치맨");
+        Post post = new Post("title", "content");
         LocalDateTime now = LocalDateTime.of(2022, 8, 26, 0, 0, 0);
 
         // when

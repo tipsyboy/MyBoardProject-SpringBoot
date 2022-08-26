@@ -1,6 +1,7 @@
 package com.myboardproject.mbp.domain.reply;
 
 import com.myboardproject.mbp.domain.BaseTimeEntity;
+import com.myboardproject.mbp.domain.member.Member;
 import com.myboardproject.mbp.domain.post.Post;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -19,8 +20,15 @@ public class Reply extends BaseTimeEntity {
     @Column(columnDefinition = "TEXT")
     private String content;
 
-    public Reply(String content, String author) {
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "member_id")
+    private Member author;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "post_id")
+    private Post post;
+
+    public Reply(String content) {
         this.content = content;
-        this.author = author;
     }
 }
