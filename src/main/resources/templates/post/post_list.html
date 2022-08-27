@@ -1,1 +1,21 @@
-섹섹보우하사
+<html layout:decorate="~{/layout/layout}">
+    <div layout:fragment="content" class="container my-3">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>제목</th>
+                    <th>글쓴이</th>
+                    <th>작성 일시</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr th:each="post : ${postList}">
+                    <td th:text="${post.title}"></td>
+                    <td th:text="${post.author}"></td>
+                    <td th:text="${post.createdDate}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</html>
