@@ -1,5 +1,6 @@
 package com.myboardproject.mbp.service.post;
 
+import com.myboardproject.mbp.controller.dto.PostListReponseDto;
 import com.myboardproject.mbp.controller.dto.PostSaveRequestDto;
 import com.myboardproject.mbp.domain.member.Member;
 import com.myboardproject.mbp.domain.post.Post;
@@ -17,8 +18,8 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 class PostServiceTest {
 
-    @Autowired PostRepository postRepository;
-    @Autowired PostService postService;
+    @Autowired private PostRepository postRepository;
+    @Autowired private PostService postService;
 
     @Test
     public void 게시글_저장하기() {
@@ -38,5 +39,15 @@ class PostServiceTest {
         // then
         assertThat(findPost.getTitle()).isEqualTo(title);
         assertThat(findPost.getContent()).isEqualTo(content);
+    }
+
+    @Test
+    public void 게시글_조회() {
+        List<PostListReponseDto> postList = postService.getPostList();
+        for (PostListReponseDto responseDto : postList) {
+            System.out.println(responseDto.getId());
+            System.out.println(responseDto.getTitle());
+            System.out.println(responseDto.getLastModifiedDate());
+        }
     }
 }

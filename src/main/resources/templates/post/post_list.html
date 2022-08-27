@@ -12,8 +12,9 @@
             <tbody>
                 <tr th:each="post : ${postList}">
                     <td th:text="${post.title}"></td>
-                    <td th:text="${post.author}"></td>
-                    <td th:text="${post.createdDate}"></td>
+                    <td>글쓴이</td>
+<!--                    <td th:text="${post.author}"></td>-->
+                    <td th:text="${#temporals.format(post.lastModifiedDate, 'yyyy-MM-dd HH:mm')}"></td>
                 </tr>
             </tbody>
         </table>
