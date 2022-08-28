@@ -6,5 +6,7 @@
                 <div class="card-text" style="white-space: pre-line;" th:text="${post.content}"></div>
             </div>
         </div>
+
+        <h5 class="border-bottom my-3 py-2" th:text="|${#lists.size(post.replyList)}개의 댓글|"></h5>
     </div>
 </html>
