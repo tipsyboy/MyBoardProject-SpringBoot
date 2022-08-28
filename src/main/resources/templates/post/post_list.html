@@ -1,8 +1,8 @@
 <html layout:decorate="~{/layout/layout}">
     <div layout:fragment="content" class="container my-3">
         <table class="table">
-            <thead>
-                <tr>
+            <thead class="table-dark">
+                <tr class="text-center">
                     <th>제목</th>
                     <th>글쓴이</th>
                     <th>작성 일시</th>
@@ -10,9 +10,11 @@
             </thead>
 
             <tbody>
-                <tr th:each="post : ${postList}">
-                    <td th:text="${post.title}"></td>
-                    <td>글쓴이</td>
+                <tr class="text-center" th:each="post : ${postList}">
+                    <td class="text-start">
+                        <a th:href="@{|/post/view/${post.id}|}" th:text="${post.title}"></a>
+                    </td>
+                    <td>// TODO: 글쓴이 구현</td>
 <!--                    <td th:text="${post.author}"></td>-->
                     <td th:text="${#temporals.format(post.lastModifiedDate, 'yyyy-MM-dd HH:mm')}"></td>
                 </tr>

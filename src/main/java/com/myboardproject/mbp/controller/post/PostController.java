@@ -1,11 +1,13 @@
 package com.myboardproject.mbp.controller.post;
 
 import com.myboardproject.mbp.controller.dto.PostListReponseDto;
+import com.myboardproject.mbp.controller.dto.PostResponseDto;
 import com.myboardproject.mbp.service.post.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -17,7 +19,7 @@ public class PostController {
 
     @GetMapping("/")
     public String root() {
-        return "redirect:/post/post/list";
+        return "redirect:/post/list";
     }
 
     @GetMapping("/post/list")
@@ -26,6 +28,14 @@ public class PostController {
         model.addAttribute("postList", postList);
 
         return "/post/post_list";
+    }
+
+    @GetMapping("/post/view/{id}")
+    public String postView(Model model, @PathVariable("id") Long id) {
+        PostResponseDto postResponseDto = postService.view(id);
+        model.addAttribute("post",postResponseDto);
+
+        return "/post/post_view";
     }
 
 }

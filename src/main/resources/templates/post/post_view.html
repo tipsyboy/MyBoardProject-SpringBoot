@@ -1,0 +1,10 @@
+<html layout:decorate="~{/layout/layout}">
+    <div layout:fragment="content" class="container my-3">
+        <h2 class="border-bottom py-2" th:text="${post.title}"></h2>
+        <div class="card my-3">
+            <div class="card-body">
+                <div class="card-text" style="white-space: pre-line;" th:text="${post.content}"></div>
+            </div>
+        </div>
+    </div>
+</html>

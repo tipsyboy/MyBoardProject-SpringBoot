@@ -1,6 +1,7 @@
 package com.myboardproject.mbp.service.post;
 
 import com.myboardproject.mbp.controller.dto.PostListReponseDto;
+import com.myboardproject.mbp.controller.dto.PostResponseDto;
 import com.myboardproject.mbp.controller.dto.PostSaveRequestDto;
 import com.myboardproject.mbp.domain.post.Post;
 import com.myboardproject.mbp.domain.post.PostRepository;
@@ -8,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
@@ -27,6 +29,14 @@ public class PostService {
         return postRepository.findAllPostDesc().stream()
                 .map(Post -> new PostListReponseDto(Post))
                 .collect(Collectors.toList());
+    }
+
+    // 게시글 조회
+    public PostResponseDto view(Long id) {
+        Post post = postRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 게시글입니다."));
+
+        return new PostResponseDto(post);
     }
 
 }
