@@ -8,8 +8,13 @@
     </head>
 
     <body>
+        <!-- 네비게이션 바 추가하기 -->
+        <!-- 와 씨바 같은 layout 디렉터리인데 경로를 지정해줘야되네 -->
+        <nav th:replace="/layout/navbar :: navbarFragment"></nav>
         <!-- 템플릿 내용 -->
         <th:block layout:fragment="content"></th:block>
 
+        <!-- javascript -->
+        <script th:src="@{/bootstrap.min.js}"></script>
     </body>
 </html>
