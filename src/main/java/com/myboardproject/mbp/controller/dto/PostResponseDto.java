@@ -10,11 +10,13 @@ import java.util.List;
 @Getter
 public class PostResponseDto {
 
+    private Long id;
     private String title;
     private String content;
     private List<Reply> replyList = new ArrayList<>();
 
     public PostResponseDto(Post entity) {
+        this.id = entity.getId();
         this.title = entity.getTitle();
         this.content = entity.getContent();
         this.replyList = entity.getReplyList();

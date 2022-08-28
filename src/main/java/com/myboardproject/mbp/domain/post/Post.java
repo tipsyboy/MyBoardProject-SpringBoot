@@ -37,4 +37,9 @@ public class Post extends BaseTimeEntity {
         this.title = title;
         this.content = content;
     }
+
+    // ========
+    public void addReply(Reply reply) {
+        replyList.add(reply);
+    }
 }
