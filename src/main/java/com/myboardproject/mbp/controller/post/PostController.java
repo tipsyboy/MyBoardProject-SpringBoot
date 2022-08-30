@@ -57,7 +57,7 @@ public class PostController {
 
 
     // 글 상세보기
-    @RequestMapping("/post/view/{id}")
+    @GetMapping("/post/view/{id}")
     public String postView(Model model, @PathVariable("id") Long id, ReplySaveRequestDto replySaveRequestDto) {
         PostResponseDto postResponseDto = postService.view(id);
         model.addAttribute("post",postResponseDto);
