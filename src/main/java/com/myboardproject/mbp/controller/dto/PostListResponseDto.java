@@ -1,19 +1,23 @@
 package com.myboardproject.mbp.controller.dto;
 
 import com.myboardproject.mbp.domain.post.Post;
+import com.myboardproject.mbp.domain.reply.Reply;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
-public class PostListReponseDto {
+public class PostListResponseDto {
 
     private Long id;
     private String title;
 //    private String author;
     private LocalDateTime lastModifiedDate;
+    private List<Reply> replyList = new ArrayList<>();
 
-    public PostListReponseDto(Post entity) {
+    public PostListResponseDto(Post entity) {
         this.id = entity.getId();
         this.title = entity.getTitle();
 //        this.author = entity.getAuthor().getUsername();

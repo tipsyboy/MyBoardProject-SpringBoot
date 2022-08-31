@@ -1,6 +1,6 @@
 package com.myboardproject.mbp.service.post;
 
-import com.myboardproject.mbp.controller.dto.PostListReponseDto;
+import com.myboardproject.mbp.controller.dto.PostListResponseDto;
 import com.myboardproject.mbp.controller.dto.PostResponseDto;
 import com.myboardproject.mbp.controller.dto.PostSaveRequestDto;
 import com.myboardproject.mbp.domain.post.Post;
@@ -29,15 +29,15 @@ public class PostService {
 
 
     // 모든 게시글 조회
-    public Page<PostListReponseDto> getPostList(int page) {
+    public Page<PostListResponseDto> getPostList(int page) {
 //        return postRepository.findAllPostDesc().stream()
 //                .map(Post -> new PostListReponseDto(Post))
 //                .collect(Collectors.toList());
 
         // create Pageable object descending order
-        Pageable pageable = PageRequest.of(page, 10, Sort.by("createdDate").descending());
+        Pageable pageable = PageRequest.of(page, 20, Sort.by("createdDate").descending());
         return postRepository.findAll(pageable)
-                .map(Post -> new PostListReponseDto(Post));
+                .map(Post -> new PostListResponseDto(Post));
     }
 
     // 게시글 조회

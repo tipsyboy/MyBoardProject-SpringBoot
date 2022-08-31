@@ -1,6 +1,7 @@
 package com.myboardproject.mbp.service.post;
 
-import com.myboardproject.mbp.controller.dto.PostListReponseDto;
+import com.myboardproject.mbp.controller.dto.PostListResponseDto;
+import com.myboardproject.mbp.controller.dto.PostListResponseDto;
 import com.myboardproject.mbp.controller.dto.PostSaveRequestDto;
 import com.myboardproject.mbp.domain.member.Member;
 import com.myboardproject.mbp.domain.post.Post;
@@ -44,8 +45,8 @@ class PostServiceTest {
 
     @Test
     public void 게시글_조회() {
-        Page<PostListReponseDto> postList = postService.getPostList(0);
-        for (PostListReponseDto responseDto : postList) {
+        Page<PostListResponseDto> postList = postService.getPostList(0);
+        for (PostListResponseDto responseDto : postList) {
             System.out.println(responseDto.getId());
             System.out.println(responseDto.getTitle());
             System.out.println(responseDto.getLastModifiedDate());

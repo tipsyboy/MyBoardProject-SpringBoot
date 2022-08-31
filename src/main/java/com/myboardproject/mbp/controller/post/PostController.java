@@ -1,6 +1,7 @@
 package com.myboardproject.mbp.controller.post;
 
-import com.myboardproject.mbp.controller.dto.PostListReponseDto;
+import com.myboardproject.mbp.controller.dto.PostListResponseDto;
+import com.myboardproject.mbp.controller.dto.PostListResponseDto;
 import com.myboardproject.mbp.controller.dto.PostResponseDto;
 import com.myboardproject.mbp.controller.dto.PostSaveRequestDto;
 import com.myboardproject.mbp.controller.dto.ReplySaveRequestDto;
@@ -47,7 +48,7 @@ public class PostController {
     // 글 목록
     @GetMapping("/post/list")
     public String postList(Model model, @RequestParam(value="page", defaultValue = "0") int page) {
-        Page<PostListReponseDto> postList = postService.getPostList(page);
+        Page<PostListResponseDto> postList = postService.getPostList(page);
         model.addAttribute("postList", postList);
 
         return "/post/post_list";

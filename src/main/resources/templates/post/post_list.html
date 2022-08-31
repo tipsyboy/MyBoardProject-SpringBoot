@@ -13,6 +13,10 @@
                 <tr class="text-center" th:each="post : ${postList}">
                     <td class="text-start">
                         <a th:href="@{|/post/view/${post.id}|}" th:text="${post.title}"></a>
+                        <span class="text-danger small ms-2"
+                              th:if="${#lists.size(post.replyList) > 0}"
+                              th:text="${#lists.size(post.replyList)}">
+                        </span>
                     </td>
                     <td>// TODO: 글쓴이 구현</td>
 <!--                    <td th:text="${post.author}"></td>-->
@@ -30,7 +34,7 @@
                     </a>
                 </li>
                 <li th:each="page: ${#numbers.sequence(1, postList.totalPages)}"
-                    th:if="${page >= postList.number-4 and page <= postList.number + 4}"
+                    th:if="${page >= postList.number-2 and page <= postList.number + 4}"
                     th:classappend="${page-1 == postList.number} ? 'active'"
                     class="page-item">
                     <a th:text="${page}" class="page-link" th:href="@{|?page=${page - 1}|}"></a>
