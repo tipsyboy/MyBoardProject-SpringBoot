@@ -14,8 +14,8 @@
                     <td class="text-start">
                         <a th:href="@{|/post/view/${post.id}|}" th:text="${post.title}"></a>
                         <span class="text-danger small ms-2"
-                              th:if="${#lists.size(post.replyList) > 0}"
-                              th:text="${#lists.size(post.replyList)}">
+                              th:if="${post.replyCnt > 0}"
+                              th:text="${post.replyCnt}">
                         </span>
                     </td>
                     <td>// TODO: 글쓴이 구현</td>

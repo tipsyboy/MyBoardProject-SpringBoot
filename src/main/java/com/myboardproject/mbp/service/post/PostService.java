@@ -35,7 +35,7 @@ public class PostService {
 //                .collect(Collectors.toList());
 
         // create Pageable object descending order
-        Pageable pageable = PageRequest.of(page, 20, Sort.by("createdDate").descending());
+        Pageable pageable = PageRequest.of(page, 15, Sort.by("createdDate").descending());
         return postRepository.findAll(pageable)
                 .map(Post -> new PostListResponseDto(Post));
     }
