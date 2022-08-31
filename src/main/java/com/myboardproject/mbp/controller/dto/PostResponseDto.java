@@ -21,7 +21,6 @@ public class PostResponseDto {
 
 //     TODO: 여기도 Reply Entity가 Controller에 노출되므로 처리 해줘야 할듯?
 //    private List<Reply> replyList = new ArrayList<>();
-
     private List<ReplyResponseDto> replyList = new ArrayList<>();
 
     public PostResponseDto(Post entity) {
