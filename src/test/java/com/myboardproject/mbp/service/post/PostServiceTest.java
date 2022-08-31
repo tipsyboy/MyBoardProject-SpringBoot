@@ -9,6 +9,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 
@@ -43,7 +44,7 @@ class PostServiceTest {
 
     @Test
     public void 게시글_조회() {
-        List<PostListReponseDto> postList = postService.getPostList();
+        Page<PostListReponseDto> postList = postService.getPostList(0);
         for (PostListReponseDto responseDto : postList) {
             System.out.println(responseDto.getId());
             System.out.println(responseDto.getTitle());

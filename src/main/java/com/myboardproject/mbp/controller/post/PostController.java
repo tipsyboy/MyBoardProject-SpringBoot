@@ -6,13 +6,11 @@ import com.myboardproject.mbp.controller.dto.PostSaveRequestDto;
 import com.myboardproject.mbp.controller.dto.ReplySaveRequestDto;
 import com.myboardproject.mbp.service.post.PostService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -48,8 +46,8 @@ public class PostController {
 
     // 글 목록
     @GetMapping("/post/list")
-    public String postList(Model model) {
-        List<PostListReponseDto> postList = postService.getPostList();
+    public String postList(Model model, @RequestParam(value="page", defaultValue = "0") int page) {
+        Page<PostListReponseDto> postList = postService.getPostList(page);
         model.addAttribute("postList", postList);
 
         return "/post/post_list";

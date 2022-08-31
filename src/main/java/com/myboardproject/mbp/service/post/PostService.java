@@ -6,6 +6,10 @@ import com.myboardproject.mbp.controller.dto.PostSaveRequestDto;
 import com.myboardproject.mbp.domain.post.Post;
 import com.myboardproject.mbp.domain.post.PostRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,10 +29,15 @@ public class PostService {
 
 
     // 모든 게시글 조회
-    public List<PostListReponseDto> getPostList() {
-        return postRepository.findAllPostDesc().stream()
-                .map(Post -> new PostListReponseDto(Post))
-                .collect(Collectors.toList());
+    public Page<PostListReponseDto> getPostList(int page) {
+//        return postRepository.findAllPostDesc().stream()
+//                .map(Post -> new PostListReponseDto(Post))
+//                .collect(Collectors.toList());
+
+        // create Pageable object descending order
+        Pageable pageable = PageRequest.of(page, 10, Sort.by("createdDate").descending());
+        return postRepository.findAll(pageable)
+                .map(Post -> new PostListReponseDto(Post));
     }
 
     // 게시글 조회
