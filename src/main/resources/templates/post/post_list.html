@@ -23,11 +23,21 @@
 
         <!-- 페이지 표시 -->
         <div th:if="${!postList.isEmpty()}">
-            <div th:if="${postList.hasPrevious}" th:text="ㅇㅇ"></div>
             <ul class="pagination justify-content-center">
                 <li class="page-item" th:classappend="${!postList.hasPrevious} ? 'disabled'">
-                    <a class="page-link" th:href="@{|?page=${postList.number-1}|}">
+                    <a class="page-link" th:href="@{|?page=${postList.number}|}">
                         <span>이전</span>
+                    </a>
+                </li>
+                <li th:each="page: ${#numbers.sequence(1, postList.totalPages)}"
+                    th:if="${page >= postList.number-4 and page <= postList.number + 4}"
+                    th:classappend="${page-1 == postList.number} ? 'active'"
+                    class="page-item">
+                    <a th:text="${page}" class="page-link" th:href="@{|?page=${page - 1}|}"></a>
+                </li>
+                <li class="page-item" th:classappend="${!postList.hasNext} ? 'disabled'">
+                    <a class="page-link" th:href="@{|?page=${postList.number + 1}|}">
+                        <span>다음</span>
                     </a>
                 </li>
             </ul>
