@@ -13,7 +13,7 @@
                 <tr class="text-center" th:each="post : ${postList}">
                     <td class="text-start">
                         <a th:href="@{|/post/view/${post.id}|}" th:text="${post.title}"></a>
-                        <span class="text-danger small ms-2"
+                        <span class="text-danger small ms-1"
                               th:if="${post.replyCnt > 0}"
                               th:text="${post.replyCnt}">
                         </span>
