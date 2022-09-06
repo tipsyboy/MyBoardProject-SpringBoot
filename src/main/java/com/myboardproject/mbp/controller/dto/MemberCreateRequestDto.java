@@ -22,6 +22,13 @@ public class MemberCreateRequestDto {
     @NotEmpty(message = "이메일을 입력해주세요.")
     private String email;
 
+    public MemberCreateRequestDto(String username, String password1, String password2, String email) {
+        this.username = username;
+        this.password1 = password1;
+        this.password2 = password2;
+        this.email = email;
+    }
+
     public Member toMemberEntity(String encodedPassword) {
         return new Member(username, encodedPassword, email);
     }

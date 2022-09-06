@@ -14,7 +14,7 @@ import javax.validation.Valid;
 @Controller
 public class MemberController {
 
-    private MemberService memberService;
+    private final MemberService memberService;
 
     @GetMapping("/member/signup")
     public String signup(MemberCreateRequestDto requestDto) {
