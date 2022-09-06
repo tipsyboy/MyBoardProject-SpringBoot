@@ -1,5 +1,6 @@
 package com.myboardproject.mbp.controller.dto;
 
+import com.myboardproject.mbp.domain.member.Member;
 import lombok.Getter;
 
 import javax.validation.constraints.NotEmpty;
@@ -21,10 +22,7 @@ public class MemberCreateRequestDto {
     @NotEmpty(message = "이메일을 입력해주세요.")
     private String email;
 
-    public MemberCreateRequestDto(String username, String password, String email) {
-        this.username = username;
-        this.password1 = password;
-        this.email = email;
+    public Member toMemberEntity(String encodedPassword) {
+        return new Member(username, encodedPassword, email);
     }
-
 }

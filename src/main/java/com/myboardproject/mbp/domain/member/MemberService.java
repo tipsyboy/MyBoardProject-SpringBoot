@@ -12,11 +12,14 @@ public class MemberService {
     private final MemberRepository memberRepository;
     private final PasswordEncoder passwordEncoder;
 
-    public Member createMember(MemberCreateRequestDto requestDto) {
-        // TODO: 받은 password를 암호화한다.
-        // TODO: MemberCreateRequestDto 를 Entity로 변환해서 DB에 저장한다.
+    public Long createMember(MemberCreateRequestDto requestDto) {
+        // 받은 password를 암호화한다.
+        // MemberCreateRequestDto 를 Entity로 변환해서 DB에 저장한다.
 
-        return new Member();
+        Member member = requestDto.toMemberEntity(passwordEncoder.encode(requestDto.getPassword1()));
+        memberRepository.save(member);
+
+        return member.getId();
     }
 }
 

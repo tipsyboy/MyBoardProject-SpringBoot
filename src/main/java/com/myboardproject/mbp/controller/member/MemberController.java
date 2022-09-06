@@ -21,8 +21,20 @@ public class MemberController {
         return "/member/signup";
     }
 
-    // TODO: SIGN-UP POST 구현
-    // TODO: form binding check
-    // TODO: PASSWORD 확인
-    // TODO: Service에 create 요청
+    @PostMapping("/member/signup")
+    public String signup(@Valid MemberCreateRequestDto requestDto, BindingResult result) {
+        if (result.hasErrors()) {
+            return "/member/signup";
+        }
+
+        if (!requestDto.getPassword1().equals(requestDto.getPassword2())) {
+            result.rejectValue("password2",
+                    "passwordIncorrect",
+                    "패스워드가 일치하지 않습니다.");
+            return "/member/signup";
+        }
+
+        memberService.createMember(requestDto);
+        return "redirect:/";
+    }
 }

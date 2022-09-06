@@ -29,7 +29,7 @@ class PostServiceTest {
         // given
         String title = "title";
         String content = "content";
-        Member member = new Member("member1");
+        Member member = new Member("member1", "1234", "eeee@email.com");
 
         PostSaveRequestDto requestDto = new PostSaveRequestDto(title, content, member.getUsername());
         postService.savePost(requestDto);
