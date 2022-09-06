@@ -59,7 +59,7 @@ public class PostController {
     @GetMapping("/post/view/{id}")
     public String postView(Model model, @PathVariable("id") Long id, ReplySaveRequestDto replySaveRequestDto) {
         PostResponseDto postResponseDto = postService.view(id);
-        model.addAttribute("post",postResponseDto);
+        model.addAttribute("post", postResponseDto);
 
         return "/post/post_view";
     }

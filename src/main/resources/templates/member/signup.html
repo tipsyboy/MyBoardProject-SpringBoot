@@ -1,4 +1,4 @@
-<html layout:decorate="~{layout/layout}">
+<html layout:decorate="~{layouts/layout}">
     <div layout:fragment="content" class="container my-3">
         <div class="my-3 border-bottom">
             <div>
@@ -7,7 +7,7 @@
         </div>
 
         <form th:action="@{/member/signup}" th:object="${requestDto}" method="post">
-            <!-- TODO: 에러 메시지 출력 -->
+            <!-- TODO: ERROR MESSAGE -->
 
             <!-- 회원가입 폼 -->
             <div class="mb-3">

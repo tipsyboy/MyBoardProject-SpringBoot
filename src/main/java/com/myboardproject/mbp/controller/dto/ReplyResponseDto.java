@@ -3,6 +3,7 @@ package com.myboardproject.mbp.controller.dto;
 import com.myboardproject.mbp.domain.reply.Reply;
 import lombok.Getter;
 
+import javax.validation.constraints.NotEmpty;
 import java.time.LocalDateTime;
 
 @Getter

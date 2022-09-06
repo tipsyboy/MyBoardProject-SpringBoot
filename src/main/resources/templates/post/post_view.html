@@ -1,4 +1,4 @@
-<html layout:decorate="~{/layout/layout}">
+<html layout:decorate="~{/layouts/layout}">
     <div layout:fragment="content" class="container my-3">
         <h2 class="border-bottom py-2" th:text="${post.title}"></h2>
         <div class="card my-3">
@@ -26,8 +26,9 @@
         </div>
         <!-- Reply 등록하기 -->
         <form th:action="@{|/reply/create/${post.id}|}" th:object="${replySaveRequestDto}" method="post">
+            <div th:replace="layouts/error_form :: errorFormFragment"></div>
             <textarea th:field="*{content}" style="resize: none;" class="form-control" rows="2"></textarea>
-            <input class="my-1" type="submit" value="등록">
+            <input class="btn btn-primary my-2" type="submit" value="댓글 등록">
         </form>
     </div>
 </html>

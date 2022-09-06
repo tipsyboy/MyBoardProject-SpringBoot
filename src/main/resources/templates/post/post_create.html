@@ -1,11 +1,9 @@
-<html layout:decorate="~{layout/layout}">
+<html layout:decorate="~{layouts/layout}">
     <div layout:fragment="content" class="container">
         <h5 class="my-3 border=bottom pb-2">글 쓰기</h5>
         <form th:action="@{/post/create}" th:object="${postSaveRequestDto}" method="post">
             <!-- 글 등록 에러 메시지 -->
-            <div class="alert alert-danger" role="alert" th:if="${#fields.hasAnyErrors()}">
-                <div th:each="err : ${#fields.allErrors()}" th:text="${err}" />
-            </div>
+            <div th:replace="layouts/error_form :: errorFormFragment"></div>
             <!-- 글 제목 title -->
             <div class="mb-3">
                 <label for="title" class="form-label">제목</label>
