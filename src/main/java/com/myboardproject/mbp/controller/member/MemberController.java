@@ -27,6 +27,7 @@ public class MemberController {
             return "/member/signup";
         }
 
+        // 비밀번호 확인
         if (!requestDto.getPassword1().equals(requestDto.getPassword2())) {
             result.rejectValue("password2",
                     "passwordIncorrect",
