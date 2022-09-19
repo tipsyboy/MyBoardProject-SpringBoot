@@ -3,6 +3,7 @@ package com.myboardproject.mbp.controller.member;
 import com.myboardproject.mbp.controller.dto.MemberCreateRequestDto;
 import com.myboardproject.mbp.domain.member.MemberService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,7 +36,19 @@ public class MemberController {
             return "/member/signup";
         }
 
-        memberService.createMember(requestDto);
+        // 회원가입 실패시 오류 메시지 처리 위함
+        try {
+            memberService.createMember(requestDto);
+        } catch(DataIntegrityViolationException e) {
+            e.printStackTrace();
+            result.reject("signupFailed", "이미 등록된 사용자 입니다.");
+            return "/member/signup";
+        } catch(Exception e) {
+            e.printStackTrace();
+            result.reject("signFailed", e.getMessage());
+            return "/member/signup";
+        }
+
         return "redirect:/";
     }
 }

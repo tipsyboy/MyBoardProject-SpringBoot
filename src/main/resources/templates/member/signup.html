@@ -10,8 +10,9 @@
             <!-- th:object="${memberCreateRequestDto}"와 controller 사이에 바인딩 문제가 있었는데, @ModelAttribute() 생략으로 인한 클래스명 키값 에러 -->
             <!-- https://www.inflearn.com/questions/137554 이거 보고 해결 -->
 
-            <!-- TODO: ERROR MESSAGE -->
+            <!-- ERROR MESSAGE -->
             <div th:replace="layouts/error_form :: errorFormFragment"></div>
+
             <!-- 회원가입 폼 -->
             <div class="mb-3">
                 <label for="username" class="form-label">ID</label>
