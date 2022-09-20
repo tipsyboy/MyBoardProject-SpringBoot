@@ -1,4 +1,4 @@
-package com.myboardproject.mbp.controller.dto;
+package com.myboardproject.mbp.controller.dto.member;
 
 import com.myboardproject.mbp.domain.member.Member;
 import lombok.Getter;

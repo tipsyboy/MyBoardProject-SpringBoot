@@ -1,9 +1,9 @@
 package com.myboardproject.mbp.service.post;
 
-import com.myboardproject.mbp.controller.dto.MemberDto;
-import com.myboardproject.mbp.controller.dto.PostListResponseDto;
-import com.myboardproject.mbp.controller.dto.PostResponseDto;
-import com.myboardproject.mbp.controller.dto.PostSaveRequestDto;
+import com.myboardproject.mbp.controller.dto.member.MemberDto;
+import com.myboardproject.mbp.controller.dto.post.PostListResponseDto;
+import com.myboardproject.mbp.controller.dto.post.PostResponseDto;
+import com.myboardproject.mbp.controller.dto.post.PostSaveRequestDto;
 import com.myboardproject.mbp.domain.member.Member;
 import com.myboardproject.mbp.domain.member.MemberRepository;
 import com.myboardproject.mbp.domain.post.Post;
@@ -15,10 +15,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service

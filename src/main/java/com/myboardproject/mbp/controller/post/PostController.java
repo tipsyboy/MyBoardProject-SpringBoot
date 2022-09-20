@@ -1,7 +1,10 @@
 package com.myboardproject.mbp.controller.post;
 
-import com.myboardproject.mbp.controller.dto.*;
-import com.myboardproject.mbp.controller.dto.PostListResponseDto;
+import com.myboardproject.mbp.controller.dto.post.PostListResponseDto;
+import com.myboardproject.mbp.controller.dto.member.MemberDto;
+import com.myboardproject.mbp.controller.dto.post.PostResponseDto;
+import com.myboardproject.mbp.controller.dto.post.PostSaveRequestDto;
+import com.myboardproject.mbp.controller.dto.reply.ReplySaveRequestDto;
 import com.myboardproject.mbp.service.member.MemberService;
 import com.myboardproject.mbp.service.post.PostService;
 import lombok.RequiredArgsConstructor;
@@ -14,7 +17,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.security.Principal;
-import java.util.List;
 
 @RequiredArgsConstructor
 @Controller

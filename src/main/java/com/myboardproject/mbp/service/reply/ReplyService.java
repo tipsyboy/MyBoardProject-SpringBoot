@@ -1,7 +1,7 @@
 package com.myboardproject.mbp.service.reply;
 
-import com.myboardproject.mbp.controller.dto.MemberDto;
-import com.myboardproject.mbp.controller.dto.ReplySaveRequestDto;
+import com.myboardproject.mbp.controller.dto.member.MemberDto;
+import com.myboardproject.mbp.controller.dto.reply.ReplySaveRequestDto;
 import com.myboardproject.mbp.domain.member.Member;
 import com.myboardproject.mbp.domain.member.MemberRepository;
 import com.myboardproject.mbp.domain.post.Post;

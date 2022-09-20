@@ -1,4 +1,4 @@
-package com.myboardproject.mbp.controller.dto;
+package com.myboardproject.mbp.controller.dto.reply;
 
 import com.myboardproject.mbp.domain.reply.Reply;
 import lombok.Getter;

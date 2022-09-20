@@ -1,4 +1,4 @@
-package com.myboardproject.mbp.controller.dto;
+package com.myboardproject.mbp.controller.dto.post;
 
 import com.myboardproject.mbp.domain.post.Post;
 import com.myboardproject.mbp.domain.reply.Reply;

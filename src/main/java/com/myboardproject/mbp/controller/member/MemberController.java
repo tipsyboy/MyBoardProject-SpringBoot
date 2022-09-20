@@ -1,6 +1,6 @@
 package com.myboardproject.mbp.controller.member;
 
-import com.myboardproject.mbp.controller.dto.MemberCreateRequestDto;
+import com.myboardproject.mbp.controller.dto.member.MemberCreateRequestDto;
 import com.myboardproject.mbp.service.member.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;

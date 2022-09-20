@@ -1,7 +1,7 @@
 package com.myboardproject.mbp.service.member;
 
-import com.myboardproject.mbp.controller.dto.MemberCreateRequestDto;
-import com.myboardproject.mbp.controller.dto.MemberDto;
+import com.myboardproject.mbp.controller.dto.member.MemberCreateRequestDto;
+import com.myboardproject.mbp.controller.dto.member.MemberDto;
 import com.myboardproject.mbp.domain.member.Member;
 import com.myboardproject.mbp.domain.member.MemberRepository;
 import com.myboardproject.mbp.exception.DataNotFoundException;

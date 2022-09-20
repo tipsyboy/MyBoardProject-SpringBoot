@@ -1,11 +1,9 @@
-package com.myboardproject.mbp.controller.dto;
+package com.myboardproject.mbp.controller.dto.post;
 
+import com.myboardproject.mbp.controller.dto.reply.ReplyResponseDto;
 import com.myboardproject.mbp.domain.post.Post;
-import com.myboardproject.mbp.domain.reply.Reply;
-import com.sun.xml.bind.v2.TODO;
 import lombok.Getter;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
