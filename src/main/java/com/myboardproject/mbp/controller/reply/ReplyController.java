@@ -7,6 +7,7 @@ import com.myboardproject.mbp.service.member.MemberService;
 import com.myboardproject.mbp.service.post.PostService;
 import com.myboardproject.mbp.service.reply.ReplyService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -24,6 +25,7 @@ public class ReplyController {
     private final PostService postService;
     private final MemberService memberService;
 
+    @PreAuthorize("isAuthenticated()")
     @PostMapping("/reply/create/{id}")
     public String createReply(Model model, @PathVariable Long id,
                               @Valid ReplySaveRequestDto requestDto, BindingResult result,

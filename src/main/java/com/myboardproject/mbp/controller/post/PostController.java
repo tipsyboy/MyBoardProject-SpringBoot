@@ -6,6 +6,7 @@ import com.myboardproject.mbp.service.member.MemberService;
 import com.myboardproject.mbp.service.post.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -28,11 +29,13 @@ public class PostController {
     }
 
     // 글 등록
+    @PreAuthorize("isAuthenticated()") // Principal 객체가 null인 경우를 방지하기 위해서 로그인된 사용자만 글을 쓸 수 있도록 함
     @GetMapping("/post/create")
     public String createPost(PostSaveRequestDto requestDto) {
         return "/post/post_create";
     }
 
+    @PreAuthorize("isAuthenticated()")
     @PostMapping("/post/create")
     public String createPost(@Valid PostSaveRequestDto requestDto, BindingResult result,
                              Principal principal) {
