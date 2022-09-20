@@ -13,14 +13,14 @@ public class PostListResponseDto {
 
     private Long id;
     private String title;
-//    private String author;
+    private String author;
     private LocalDateTime lastModifiedDate;
     private Integer replyCnt;
 
     public PostListResponseDto(Post entity) {
         this.id = entity.getId();
         this.title = entity.getTitle();
-//        this.author = entity.getAuthor().getUsername();
+        this.author = entity.getAuthor().getUsername();
         this.lastModifiedDate = entity.getLastModifiedDate();
         this.replyCnt = entity.getReplyList().size();
     }

@@ -18,8 +18,7 @@
                               th:text="${post.replyCnt}">
                         </span>
                     </td>
-                    <td>// TODO: 글쓴이 구현</td>
-<!--                    <td th:text="${post.author}"></td>-->
+                    <td th:text="${post.author}"></td>
                     <td th:text="${#temporals.format(post.lastModifiedDate, 'yyyy-MM-dd HH:mm')}"></td>
                 </tr>
             </tbody>
