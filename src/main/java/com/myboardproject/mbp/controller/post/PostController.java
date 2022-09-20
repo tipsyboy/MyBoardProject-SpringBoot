@@ -1,10 +1,8 @@
 package com.myboardproject.mbp.controller.post;
 
+import com.myboardproject.mbp.controller.dto.*;
 import com.myboardproject.mbp.controller.dto.PostListResponseDto;
-import com.myboardproject.mbp.controller.dto.PostListResponseDto;
-import com.myboardproject.mbp.controller.dto.PostResponseDto;
-import com.myboardproject.mbp.controller.dto.PostSaveRequestDto;
-import com.myboardproject.mbp.controller.dto.ReplySaveRequestDto;
+import com.myboardproject.mbp.service.member.MemberService;
 import com.myboardproject.mbp.service.post.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -14,6 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.security.Principal;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -21,12 +20,12 @@ import java.util.List;
 public class PostController {
 
     private final PostService postService;
+    private final MemberService memberService;
 
     @GetMapping("/")
     public String root() {
         return "redirect:/post/list";
     }
-
 
     // 글 등록
     @GetMapping("/post/create")
@@ -35,12 +34,15 @@ public class PostController {
     }
 
     @PostMapping("/post/create")
-    public String createPost(@Valid PostSaveRequestDto requestDto, BindingResult result) {
+    public String createPost(@Valid PostSaveRequestDto requestDto, BindingResult result,
+                             Principal principal) {
+
         if (result.hasErrors()) { // 바인딩 에러
             return "/post/post_create";
         }
 
-        postService.savePost(requestDto);
+        MemberDto memberDto = memberService.getMemberDto(principal.getName());
+        postService.savePost(requestDto, memberDto);
         return "redirect:/post/list";
     }
 

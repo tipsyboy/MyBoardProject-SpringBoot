@@ -32,7 +32,7 @@ class PostServiceTest {
         Member member = new Member("member1", "1234", "eeee@email.com");
 
         PostSaveRequestDto requestDto = new PostSaveRequestDto(title, content, member.getUsername());
-        postService.savePost(requestDto);
+        postService.savePost(requestDto, null);
 
         // when
         List<Post> postList = postRepository.findAll();

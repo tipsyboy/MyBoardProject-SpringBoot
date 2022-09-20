@@ -42,4 +42,8 @@ public class Member {
     public void addReplyMember(Reply reply) {
         this.replyList.add(reply);
     }
+
+    public void addPostMember(Post post) {
+        this.postList.add(post);
+    }
 }

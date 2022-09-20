@@ -25,7 +25,10 @@ public class PostSaveRequestDto {
         this.author = author;
     }
 
-    public Post toEntity() {
-        return new Post(title, content);
+    public Post toEntity(Member member) {
+        Post post = new Post(this.title, this.content, member);
+        member.addPostMember(post);
+        return post;
+
     }
 }

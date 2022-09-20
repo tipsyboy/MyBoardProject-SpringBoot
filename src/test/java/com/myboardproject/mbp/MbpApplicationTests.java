@@ -17,7 +17,7 @@ class MbpApplicationTests {
 			String title = String.format("테스트 타이틀: %s", i);
 			String content = String.format("테스트 본문: %s", i);
 			PostSaveRequestDto requestDto = new PostSaveRequestDto(title, content, null);
-			postService.savePost(requestDto);
+			postService.savePost(requestDto, null);
 		}
 	}
 
