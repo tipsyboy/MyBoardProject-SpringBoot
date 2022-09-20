@@ -17,6 +17,7 @@ public class PostResponseDto {
     private Long id;
     private String title;
     private String content;
+    private String author;
     private LocalDateTime lastModifiedDate;
 
 //     TODO: 여기도 Reply Entity가 Controller에 노출되므로 처리 해줘야 할듯?
@@ -27,6 +28,7 @@ public class PostResponseDto {
         this.id = entity.getId();
         this.title = entity.getTitle();
         this.content = entity.getContent();
+        this.author = entity.getAuthor().getUsername();
         this.lastModifiedDate = entity.getLastModifiedDate();
         this.replyList = entity.getReplyList().stream()
                 .map(Reply -> new ReplyResponseDto(Reply))
