@@ -1,5 +1,6 @@
 package com.myboardproject.mbp.controller.dto;
 
+import com.myboardproject.mbp.domain.member.Member;
 import com.myboardproject.mbp.domain.post.Post;
 import com.myboardproject.mbp.domain.reply.Reply;
 import lombok.Getter;
@@ -16,9 +17,10 @@ public class ReplySaveRequestDto {
         this.content = content;
     }
 
-    public Reply toEntityAndMappingPost(Post post) {
-        Reply reply = new Reply(content, post);
+    public Reply toEntityAndMappingPost(Post post, Member member) {
+        Reply reply = new Reply(content, post, member);
         post.addReply(reply);
+        member.addReplyMember(reply);
         return reply;
     }
 }

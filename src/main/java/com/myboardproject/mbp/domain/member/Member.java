@@ -38,4 +38,8 @@ public class Member {
         this.email = email;
     }
 
+    // =============
+    public void addReplyMember(Reply reply) {
+        this.replyList.add(reply);
+    }
 }

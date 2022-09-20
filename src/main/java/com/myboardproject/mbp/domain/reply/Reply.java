@@ -28,8 +28,9 @@ public class Reply extends BaseTimeEntity {
     @JoinColumn(name = "post_id")
     private Post post;
 
-    public Reply(String content, Post post) {
+    public Reply(String content, Post post, Member member) {
         this.content = content;
         this.post = post;
+        this.author = member;
     }
 }
