@@ -1,6 +1,8 @@
-package com.myboardproject.mbp.domain.member;
+package com.myboardproject.mbp.service.member;
 
 import com.myboardproject.mbp.controller.dto.MemberCreateRequestDto;
+import com.myboardproject.mbp.domain.member.Member;
+import com.myboardproject.mbp.domain.member.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

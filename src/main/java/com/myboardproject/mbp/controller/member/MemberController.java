@@ -1,7 +1,7 @@
 package com.myboardproject.mbp.controller.member;
 
 import com.myboardproject.mbp.controller.dto.MemberCreateRequestDto;
-import com.myboardproject.mbp.domain.member.MemberService;
+import com.myboardproject.mbp.service.member.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
@@ -50,5 +50,10 @@ public class MemberController {
         }
 
         return "redirect:/";
+    }
+
+    @GetMapping("/member/login")
+    public String login() {
+        return "/member/login_form";
     }
 }
