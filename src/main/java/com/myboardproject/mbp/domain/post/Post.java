@@ -43,4 +43,9 @@ public class Post extends BaseTimeEntity {
     public void addReply(Reply reply) {
         replyList.add(reply);
     }
+
+    public void updatePost(String title, String content) {
+        this.title = title;
+        this.content = content;
+    }
 }

@@ -15,6 +15,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @RequiredArgsConstructor
 @Service
@@ -24,6 +25,7 @@ public class PostService {
     private final MemberRepository memberRepository;
 
     // 게시글 저장
+    @Transactional
     public Long savePost(PostSaveRequestDto requestDto, MemberDto memberDto) {
         Member findMember = memberRepository.findById(memberDto.getId())
                 .orElseThrow(() -> new DataNotFoundException("사용자를 찾을 수 없습니다."));
@@ -46,7 +48,7 @@ public class PostService {
                 .map(Post -> new PostListResponseDto(Post));
     }
 
-    // 게시글 조회
+    // 게시글 조회 및 Dto 반환
     public PostResponseDto view(Long id) {
         Post post = postRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 게시글입니다."));
@@ -54,4 +56,12 @@ public class PostService {
         return new PostResponseDto(post);
     }
 
+    // 게시글 수정
+    @Transactional
+    public void modifyPost(Long id, PostSaveRequestDto requestDto) {
+        Post findPost = postRepository.findById(id)
+                .orElseThrow(() -> new DataNotFoundException("해당 게시글을 찾을 수 없습니다. id=" + id));
+
+        findPost.updatePost(requestDto.getTitle(), requestDto.getContent());
+    }
 }

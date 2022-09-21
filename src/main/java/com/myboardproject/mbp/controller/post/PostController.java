@@ -9,11 +9,13 @@ import com.myboardproject.mbp.service.member.MemberService;
 import com.myboardproject.mbp.service.post.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
 import java.security.Principal;
@@ -71,4 +73,37 @@ public class PostController {
         return "/post/post_view";
     }
 
+
+    // 글 수정하기
+    @PreAuthorize("isAuthenticated()")
+    @GetMapping("/post/modify/{id}")
+    public String modifyPost(PostSaveRequestDto requestDto, @PathVariable("id") Long id,
+                             Principal principal) {
+
+        PostResponseDto findPostDto = postService.view(id); // Service에서 예외처리하면 여기선 어떻게 되는것?
+        if (!findPostDto.getAuthor().equals(principal.getName())) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "수정 권한이 없습니다.");
+        }
+        requestDto.mappingModifyInfo(findPostDto);
+        return "/post/post_create";
+    }
+
+    @PreAuthorize("isAuthenticated()")
+    @PostMapping("/post/modify/{id}")
+    public String modifyPost(@Valid PostSaveRequestDto requestDto, BindingResult bindingResult,
+                             @PathVariable("id") Long id,
+                             Principal principal) {
+
+        if (bindingResult.hasErrors()) {
+            return "/post/post_create";
+        }
+
+        PostResponseDto findPost = postService.view(id);
+        if (!findPost.getAuthor().equals(principal.getName())) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "수정 권한이 없습니다.");
+        }
+
+        postService.modifyPost(id, requestDto);
+        return String.format("redirect:/post/view/%s", id);
+    }
 }

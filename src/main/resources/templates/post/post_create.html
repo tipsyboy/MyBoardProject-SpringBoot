@@ -1,7 +1,9 @@
 <html layout:decorate="~{layouts/layout}">
     <div layout:fragment="content" class="container">
         <h5 class="my-3 border=bottom pb-2">글 쓰기</h5>
-        <form th:action="@{/post/create}" th:object="${postSaveRequestDto}" method="post">
+        <form th:object="${postSaveRequestDto}" method="post">
+            <!-- csrf 공부가 필요할듯... -->
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
             <!-- 글 등록 에러 메시지 -->
             <div th:replace="layouts/error_form :: errorFormFragment"></div>
             <!-- 글 제목 title -->

@@ -3,7 +3,9 @@
         <h2 class="border-bottom py-2" th:text="${post.title}"></h2>
         <div class="card my-3">
             <div class="card-body">
+                <!-- 글 내용 -->
                 <div class="card-text" style="white-space: pre-line;" th:text="${post.content}"></div>
+                <!-- 작성자/마지막 수정 일자 뱃지-->
                 <div class="d-flex justify-content-end">
                     <div class="badge bg-light text-dark p-2 text-start">
                         <div class="mb-2">
@@ -11,6 +13,18 @@
                         </div>
                         <div th:text="${#temporals.format(post.lastModifiedDate, 'yyyy-MM-dd HH:mm')}"></div>
                     </div>
+                </div>
+                <!-- 수정/삭제 버튼 -->
+                <div class="d-flex justify-content-end my-2">
+                    <a th:href="@{|/post/modify/${post.id}|}" class="mx-1 btn btn-sm btn-outline-secondary"
+                       sec:authorize="isAuthenticated()"
+                       th:if="${post.author == #authentication.getPrincipal().getUsername()}"
+                       th:text="수정"></a>
+
+                    <a th:href="@{|/post/delete/${post.id}|}" class="btn btn-sm btn-outline-secondary"
+                       sec:authorize="isAuthenticated()"
+                       th:if="${post.author == #authentication.getPrincipal().getUsername()}"
+                       th:text="삭제"></a>
                 </div>
             </div>
         </div>

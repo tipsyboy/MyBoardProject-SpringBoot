@@ -29,6 +29,10 @@ public class PostSaveRequestDto {
         Post post = new Post(this.title, this.content, member);
         member.addPostMember(post);
         return post;
+    }
 
+    public void mappingModifyInfo(PostResponseDto postResponseDto) {
+        this.title = postResponseDto.getTitle();
+        this.content = postResponseDto.getContent();
     }
 }
