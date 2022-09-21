@@ -58,10 +58,18 @@ public class PostService {
 
     // 게시글 수정
     @Transactional
-    public void modifyPost(Long id, PostSaveRequestDto requestDto) {
+    public void modify(Long id, PostSaveRequestDto requestDto) {
         Post findPost = postRepository.findById(id)
                 .orElseThrow(() -> new DataNotFoundException("해당 게시글을 찾을 수 없습니다. id=" + id));
 
         findPost.updatePost(requestDto.getTitle(), requestDto.getContent());
+    }
+
+    // 게시글 삭제
+    @Transactional
+    public void deletePost(Long id) {
+        Post findPost = postRepository.findById(id)
+                .orElseThrow(() -> new DataNotFoundException("해당 게시글을 찾을 수 없습니다 id=" + id));
+        postRepository.delete(findPost);
     }
 }

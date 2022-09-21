@@ -74,7 +74,7 @@ public class PostController {
     }
 
 
-    // 글 수정하기
+    // ========== 글 수정하기 ==============
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/post/modify/{id}")
     public String modifyPost(PostSaveRequestDto requestDto, @PathVariable("id") Long id,
@@ -98,12 +98,28 @@ public class PostController {
             return "/post/post_create";
         }
 
-        PostResponseDto findPost = postService.view(id);
-        if (!findPost.getAuthor().equals(principal.getName())) {
+        PostResponseDto findPostDto = postService.view(id);
+        if (!findPostDto.getAuthor().equals(principal.getName())) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "수정 권한이 없습니다.");
         }
 
-        postService.modifyPost(id, requestDto);
+        postService.modify(id, requestDto);
         return String.format("redirect:/post/view/%s", id);
     }
+
+    // ========== 글 삭제하기 ==============
+    @PreAuthorize("isAuthenticated()")
+    @GetMapping("/post/delete/{id}")
+    public String deletePost(@PathVariable("id") Long id,
+                             Principal principal) {
+
+        PostResponseDto findPostDto = postService.view(id);
+        if (!findPostDto.getAuthor().equals(principal.getName())) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "삭제 권한이 없습니다.");
+        }
+
+        postService.deletePost(id);
+        return "redirect:/";
+    }
+
 }

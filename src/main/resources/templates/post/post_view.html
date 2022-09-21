@@ -21,7 +21,8 @@
                        th:if="${post.author == #authentication.getPrincipal().getUsername()}"
                        th:text="수정"></a>
 
-                    <a th:href="@{|/post/delete/${post.id}|}" class="btn btn-sm btn-outline-secondary"
+                    <a href="javascript:void(0);" th:data-uri="@{|/post/delete/${post.id}|}"
+                       class="delete btn btn-sm btn-outline-secondary"
                        sec:authorize="isAuthenticated()"
                        th:if="${post.author == #authentication.getPrincipal().getUsername()}"
                        th:text="삭제"></a>
@@ -51,4 +52,14 @@
             <input class="btn btn-primary my-2" type="submit" value="댓글 등록">
         </form>
     </div>
+    <script layout:fragment="script" type='text/javascript'>
+        const delete_elements = document.getElementsByClassName("delete");
+        Array.from(delete_elements).forEach(function(element) {
+            element.addEventListener('click', function() {
+                if(confirm("정말로 삭제하시겠습니까?")) {
+                    location.href = this.dataset.uri;
+                };
+            });
+        });
+    </script>
 </html>
