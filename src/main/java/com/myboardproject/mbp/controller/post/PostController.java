@@ -118,7 +118,7 @@ public class PostController {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "삭제 권한이 없습니다.");
         }
 
-        postService.deletePost(id);
+        postService.delete(id);
         return "redirect:/";
     }
 

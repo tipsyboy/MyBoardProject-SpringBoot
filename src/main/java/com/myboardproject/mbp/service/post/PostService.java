@@ -67,7 +67,7 @@ public class PostService {
 
     // 게시글 삭제
     @Transactional
-    public void deletePost(Long id) {
+    public void delete(Long id) {
         Post findPost = postRepository.findById(id)
                 .orElseThrow(() -> new DataNotFoundException("해당 게시글을 찾을 수 없습니다 id=" + id));
         postRepository.delete(findPost);

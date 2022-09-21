@@ -23,4 +23,8 @@ public class ReplySaveRequestDto {
         member.addReplyMember(reply);
         return reply;
     }
+
+    public void mappingModifyInfo(ReplyResponseDto replyResponseDto) {
+        this.content = replyResponseDto.getContent();
+    }
 }

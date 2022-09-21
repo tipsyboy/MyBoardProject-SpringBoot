@@ -33,4 +33,8 @@ public class Reply extends BaseTimeEntity {
         this.post = post;
         this.author = member;
     }
+
+    public void updateReply(String content) {
+        this.content = content;
+    }
 }
