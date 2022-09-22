@@ -15,6 +15,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Arrays;
+import java.util.List;
+
 @RequiredArgsConstructor
 @Service
 public class ReplyService {
@@ -47,5 +50,17 @@ public class ReplyService {
                 .orElseThrow(() -> new DataNotFoundException("해당 댓글을 찾을 수 없습니다. id=" + id));
 
         reply.updateReply(replySaveRequestDto.getContent());
+    }
+
+    @Transactional
+    public void delete(Long id) {
+        Reply findReply = replyRepository.findById(id)
+                .orElseThrow(() -> new DataNotFoundException("해당 댓글을 찾을 수 없습니다. id=" + id));
+
+        replyRepository.delete(findReply);
+        /**
+         * TODO: 삭제한 글/댓글은 JAVA코드에 의해서 Member Entity의 list에 넣었었는데, 삭제 이후 어떻게 되는거지
+         * TODO: 없어지긴 했는데, 잘 모르겠음.
+         */
     }
 }

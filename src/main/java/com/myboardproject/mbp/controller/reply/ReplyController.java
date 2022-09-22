@@ -79,4 +79,19 @@ public class ReplyController {
         replyService.modify(id, replySaveRequestDto);
         return String.format("redirect:/post/view/%s", replyDto.getPostId());
     }
+
+    // ========== 댓글 삭제하기 ==============
+    @PreAuthorize("isAuthenticated()")
+    @GetMapping("/reply/delete/{id}")
+    public String deleteReply(@PathVariable("id") Long id,
+                              Principal principal) {
+
+        ReplyResponseDto replyDto = replyService.getReplyDto(id);
+        if (!replyDto.getAuthor().equals(principal.getName())) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "삭제 권한이 없습니다.");
+        }
+
+        replyService.delete(id);
+        return String.format("redirect:/post/view/%s", replyDto.getPostId());
+    }
 }
