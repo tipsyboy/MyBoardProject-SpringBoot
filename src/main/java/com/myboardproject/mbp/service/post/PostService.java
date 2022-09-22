@@ -29,13 +29,13 @@ public class PostService {
 
     // 게시글 저장
     @Transactional
-    public Long savePost(PostSaveRequestDto requestDto, MemberDto memberDto) {
+    public void savePost(PostSaveRequestDto requestDto, MemberDto memberDto) {
+
         Member findMember = memberRepository.findById(memberDto.getId())
                 .orElseThrow(() -> new DataNotFoundException("사용자를 찾을 수 없습니다."));
 
         Post post = requestDto.toEntity(findMember);
         postRepository.save(post);
-        return post.getId();
     }
 
 
@@ -51,6 +51,7 @@ public class PostService {
                 .map(Post -> new PostListResponseDto(Post));
     }
 
+
     // 게시글 조회 및 Dto 반환
     public PostResponseDto view(Long id) {
         Post post = postRepository.findById(id)
@@ -58,6 +59,7 @@ public class PostService {
 
         return new PostResponseDto(post);
     }
+
 
     // 게시글 수정
     @Transactional
@@ -67,6 +69,7 @@ public class PostService {
 
         findPost.updatePost(requestDto.getTitle(), requestDto.getContent());
     }
+
 
     // 게시글 삭제
     @Transactional

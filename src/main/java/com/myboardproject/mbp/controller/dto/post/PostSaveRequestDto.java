@@ -21,6 +21,7 @@ public class PostSaveRequestDto {
     private String author;
     private PostCategory category;
 
+
     public PostSaveRequestDto(String title, String content, String author, PostCategory category) {
         this.title = title;
         this.content = content;
@@ -28,11 +29,13 @@ public class PostSaveRequestDto {
         this.category = category;
     }
 
+
     public Post toEntity(Member member) {
         Post post = new Post(this.title, this.content, member, this.category);
         member.addPostMember(post);
         return post;
     }
+
 
     public void mappingModifyInfo(PostResponseDto postResponseDto) {
         this.title = postResponseDto.getTitle();

@@ -5,6 +5,8 @@ import com.myboardproject.mbp.controller.dto.member.MemberDto;
 import com.myboardproject.mbp.controller.dto.post.PostResponseDto;
 import com.myboardproject.mbp.controller.dto.post.PostSaveRequestDto;
 import com.myboardproject.mbp.controller.dto.reply.ReplySaveRequestDto;
+import com.myboardproject.mbp.domain.post.Post;
+import com.myboardproject.mbp.domain.post.PostCategory;
 import com.myboardproject.mbp.service.member.MemberService;
 import com.myboardproject.mbp.service.post.PostService;
 import lombok.RequiredArgsConstructor;
@@ -30,19 +32,25 @@ public class PostController {
 
     @GetMapping("/")
     public String root() {
-        return "redirect:/post/list/game";
+        return "redirect:/post/list";
     }
 
     // 글 등록
     @PreAuthorize("isAuthenticated()") // Principal 객체가 null인 경우를 방지하기 위해서 로그인된 사용자만 글을 쓸 수 있도록 함
-    @GetMapping("/post/create")
-    public String createPost(PostSaveRequestDto requestDto) {
+    @GetMapping("/post/create/{category}")
+    public String createPost(PostSaveRequestDto requestDto,
+                             Model model,
+                             @PathVariable("category") PostCategory category) {
+
+        model.addAttribute("postCategory", category);
         return "/post/post_create";
+//        return String
     }
 
     @PreAuthorize("isAuthenticated()")
-    @PostMapping("/post/create")
+    @PostMapping("/post/create/{category}")
     public String createPost(@Valid PostSaveRequestDto requestDto, BindingResult result,
+                             @PathVariable("category") PostCategory category,
                              Principal principal) {
 
         if (result.hasErrors()) { // 바인딩 에러
@@ -56,13 +64,12 @@ public class PostController {
 
 
     // 글 목록
-    @GetMapping("/post/list/{category}")
-    public String postList(Model model, @PathVariable("category") String category,
+    @GetMapping("/post/list")
+    public String postList(Model model,
                            @RequestParam(value="page", defaultValue = "0") int page) {
 
         Page<PostListResponseDto> postList = postService.getPostList(page);
         model.addAttribute("postList", postList);
-        model.addAttribute("boardCategory", category.toUpperCase());
 
         return "/post/post_list";
     }
