@@ -7,6 +7,7 @@ import com.myboardproject.mbp.controller.dto.post.PostSaveRequestDto;
 import com.myboardproject.mbp.domain.member.Member;
 import com.myboardproject.mbp.domain.member.MemberRepository;
 import com.myboardproject.mbp.domain.post.Post;
+import com.myboardproject.mbp.domain.post.PostCategory;
 import com.myboardproject.mbp.domain.post.PostRepository;
 import com.myboardproject.mbp.exception.DataNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -16,6 +17,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Arrays;
 
 @RequiredArgsConstructor
 @Service
@@ -39,7 +42,7 @@ public class PostService {
     // 모든 게시글 조회
     public Page<PostListResponseDto> getPostList(int page) {
 //        return postRepository.findAllPostDesc().stream()
-//                .map(Post -> new PostListReponseDto(Post))
+//                .map(Post -> new PostListResponseDto(Post))
 //                .collect(Collectors.toList());
 
         // create Pageable object descending order

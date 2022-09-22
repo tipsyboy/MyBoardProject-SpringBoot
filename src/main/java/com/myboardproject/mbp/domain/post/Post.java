@@ -33,10 +33,14 @@ public class Post extends BaseTimeEntity {
     @OneToMany(mappedBy = "post")
     private List<Reply> replyList = new ArrayList<>();
 
-    public Post(String title, String content, Member member) {
+    @Enumerated(EnumType.STRING)
+    private PostCategory category;
+
+    public Post(String title, String content, Member member, PostCategory category) {
         this.title = title;
         this.content = content;
         this.author = member;
+        this.category = category;
     }
 
     // ========

@@ -19,6 +19,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
 import java.security.Principal;
+import java.util.Locale;
 
 @RequiredArgsConstructor
 @Controller
@@ -29,7 +30,7 @@ public class PostController {
 
     @GetMapping("/")
     public String root() {
-        return "redirect:/post/list";
+        return "redirect:/post/list/game";
     }
 
     // 글 등록
@@ -55,10 +56,13 @@ public class PostController {
 
 
     // 글 목록
-    @GetMapping("/post/list")
-    public String postList(Model model, @RequestParam(value="page", defaultValue = "0") int page) {
+    @GetMapping("/post/list/{category}")
+    public String postList(Model model, @PathVariable("category") String category,
+                           @RequestParam(value="page", defaultValue = "0") int page) {
+
         Page<PostListResponseDto> postList = postService.getPostList(page);
         model.addAttribute("postList", postList);
+        model.addAttribute("boardCategory", category.toUpperCase());
 
         return "/post/post_list";
     }

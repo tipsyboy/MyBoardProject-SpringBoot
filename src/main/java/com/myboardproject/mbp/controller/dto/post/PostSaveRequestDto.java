@@ -2,6 +2,7 @@ package com.myboardproject.mbp.controller.dto.post;
 
 import com.myboardproject.mbp.domain.member.Member;
 import com.myboardproject.mbp.domain.post.Post;
+import com.myboardproject.mbp.domain.post.PostCategory;
 import lombok.Getter;
 
 import javax.validation.constraints.NotEmpty;
@@ -18,15 +19,17 @@ public class PostSaveRequestDto {
     private String content;
 
     private String author;
+    private PostCategory category;
 
-    public PostSaveRequestDto(String title, String content, String author) {
+    public PostSaveRequestDto(String title, String content, String author, PostCategory category) {
         this.title = title;
         this.content = content;
         this.author = author;
+        this.category = category;
     }
 
     public Post toEntity(Member member) {
-        Post post = new Post(this.title, this.content, member);
+        Post post = new Post(this.title, this.content, member, this.category);
         member.addPostMember(post);
         return post;
     }
