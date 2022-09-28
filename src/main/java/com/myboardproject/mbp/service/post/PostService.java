@@ -1,5 +1,6 @@
 package com.myboardproject.mbp.service.post;
 
+import com.myboardproject.mbp.config.StringToEnumConverter;
 import com.myboardproject.mbp.controller.dto.member.MemberDto;
 import com.myboardproject.mbp.controller.dto.post.PostListResponseDto;
 import com.myboardproject.mbp.controller.dto.post.PostResponseDto;
@@ -40,14 +41,19 @@ public class PostService {
 
 
     // 모든 게시글 조회
-    public Page<PostListResponseDto> getPostList(int page) {
+    public Page<PostListResponseDto> getPostList(int page, String category) {
 //        return postRepository.findAllPostDesc().stream()
 //                .map(Post -> new PostListResponseDto(Post))
 //                .collect(Collectors.toList());
 
         // create Pageable object descending order
         Pageable pageable = PageRequest.of(page, 15, Sort.by("createdDate").descending());
-        return postRepository.findAll(pageable)
+
+//        return postRepository.findAll(pageable)
+//                .map(Post -> new PostListResponseDto(Post));
+
+        PostCategory categoryEnum = new StringToEnumConverter().convert(category);
+        return postRepository.findAllByCategory(pageable, categoryEnum)
                 .map(Post -> new PostListResponseDto(Post));
     }
 

@@ -21,7 +21,6 @@ import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
 import java.security.Principal;
-import java.util.Locale;
 
 @RequiredArgsConstructor
 @Controller
@@ -32,7 +31,7 @@ public class PostController {
 
     @GetMapping("/")
     public String root() {
-        return "redirect:/post/list";
+        return "redirect:/post/list/free";
     }
 
     // 글 등록
@@ -44,13 +43,12 @@ public class PostController {
 
         model.addAttribute("postCategory", category);
         return "/post/post_create";
-//        return String
     }
 
     @PreAuthorize("isAuthenticated()")
     @PostMapping("/post/create/{category}")
     public String createPost(@Valid PostSaveRequestDto requestDto, BindingResult result,
-                             @PathVariable("category") PostCategory category,
+                             @PathVariable("category") String category,
                              Principal principal) {
 
         if (result.hasErrors()) { // 바인딩 에러
@@ -59,17 +57,19 @@ public class PostController {
 
         MemberDto memberDto = memberService.getMemberDto(principal.getName());
         postService.savePost(requestDto, memberDto);
-        return "redirect:/post/list";
+        return String.format("redirect:/post/list/%s", category);
     }
 
 
     // 글 목록
-    @GetMapping("/post/list")
+    @GetMapping("/post/list/{category}")
     public String postList(Model model,
-                           @RequestParam(value="page", defaultValue = "0") int page) {
+                           @RequestParam(value="page", defaultValue = "0") int page,
+                           @PathVariable("category") String category) {
 
-        Page<PostListResponseDto> postList = postService.getPostList(page);
+        Page<PostListResponseDto> postList = postService.getPostList(page, category);
         model.addAttribute("postList", postList);
+        model.addAttribute("postCategory", category);
 
         return "/post/post_list";
     }
