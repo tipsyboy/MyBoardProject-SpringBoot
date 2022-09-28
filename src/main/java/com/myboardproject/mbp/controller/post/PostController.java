@@ -5,7 +5,6 @@ import com.myboardproject.mbp.controller.dto.member.MemberDto;
 import com.myboardproject.mbp.controller.dto.post.PostResponseDto;
 import com.myboardproject.mbp.controller.dto.post.PostSaveRequestDto;
 import com.myboardproject.mbp.controller.dto.reply.ReplySaveRequestDto;
-import com.myboardproject.mbp.domain.post.Post;
 import com.myboardproject.mbp.domain.post.PostCategory;
 import com.myboardproject.mbp.service.member.MemberService;
 import com.myboardproject.mbp.service.post.PostService;
@@ -67,9 +66,12 @@ public class PostController {
                            @RequestParam(value="page", defaultValue = "0") int page,
                            @PathVariable("category") String category) {
 
+
+        String boardName = postService.getBoardName(category);
         Page<PostListResponseDto> postList = postService.getPostList(page, category);
         model.addAttribute("postList", postList);
         model.addAttribute("postCategory", category);
+        model.addAttribute("boardName", boardName);
 
         return "/post/post_list";
     }

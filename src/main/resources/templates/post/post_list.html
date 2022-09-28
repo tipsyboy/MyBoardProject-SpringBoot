@@ -1,12 +1,17 @@
 <html layout:decorate="~{/layouts/layout}">
     <div layout:fragment="content" class="container my-3">
-<!--        <h4 class="border-bottom pb-2 mb-5" th:text="${boardCategory}"></h4>-->
+        <!-- 게시판 이름 -->
+        <h4 class="border-bottom pb-1 mb-3">
+            <a class="text-decoration-none fw-bold text-secondary"
+               th:href="@{|/post/list/${postCategory}|}"
+               th:text="${boardName}"></a>
+        </h4>
         <table class="table">
             <thead class="table-dark">
                 <tr class="text-center">
                     <th>제목</th>
                     <th>글쓴이</th>
-                    <th>작성 일시</th>
+                    <th>날짜</th>
                 </tr>
             </thead>
 

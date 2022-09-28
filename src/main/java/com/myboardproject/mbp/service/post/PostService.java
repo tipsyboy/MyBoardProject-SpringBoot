@@ -84,4 +84,20 @@ public class PostService {
                 .orElseThrow(() -> new DataNotFoundException("해당 게시글을 찾을 수 없습니다 id=" + id));
         postRepository.delete(findPost);
     }
+
+    public String getBoardName(String category) {
+        String boardName = "";
+        switch (category) {
+            case "free":
+                boardName = "자유게시판";
+                break;
+            case "game":
+                boardName = "게임판";
+                break;
+            case "food":
+                boardName = "음식판";
+                break;
+        }
+        return boardName;
+    }
 }
